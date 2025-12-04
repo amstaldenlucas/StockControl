@@ -1,5 +1,6 @@
 ﻿using ControlStock.Application.DTOs;
 using ControlStock.Application.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ControlStockApi.Controllers
 {
@@ -10,6 +11,11 @@ namespace ControlStockApi.Controllers
 		public ProductController(IProductService productService) : base(productService)
 		{
 			_productService = productService;
+		}
+
+		public override async Task<ActionResult<IEnumerable<ProductDto>>> GetAll()
+		{
+			return await base.GetAll();
 		}
 	}
 }

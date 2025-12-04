@@ -8,7 +8,9 @@ namespace ControlStock.Application.Mapping
 	{
 		public MapperProfile()
 		{
+			CreateMap<ErrorLog, ErrorLogDto>().ReverseMap();
 			CreateMap<Product, ProductDto>().ReverseMap();
+			CreateMap<ProductGroup, ProductGroupDto>().ReverseMap();
 		}
 	}
 }
