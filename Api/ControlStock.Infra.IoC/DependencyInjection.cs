@@ -5,6 +5,7 @@ using ControlStock.Core.Interfaces;
 using ControlStock.Core.Interfaces.Repositories;
 using ControlStock.Data;
 using ControlStock.Data.Repositories;
+using ControlStock.Data.Seed;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,7 +32,10 @@ namespace ControlStock.Infra.IoC
 			services.AddAutoMapper(typeof(MapperProfile).Assembly);
 			AddDbServices(services);
 
+			services.AddScoped<IDatabaseSeeder, DatabaseSeeder>();
 			services.AddScoped<IErrorLogService, ErrorLogService>();
+			services.AddScoped<IAdminService, AdminService>();
+			
 			services.AddScoped<IProductService, ProductService>();
 			services.AddScoped<IProductGroupService, ProductGroupService>();
 

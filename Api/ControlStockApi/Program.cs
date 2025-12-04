@@ -1,9 +1,11 @@
 using ControlStock.Application.Mapping;
+using ControlStock.Core.Interfaces;
 using ControlStock.Data;
 using ControlStock.Data.Seed;
 using ControlStock.Infra.IoC;
 using ControlStockApi.Configuration;
 using ControlStockApi.Middlewares;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,8 +41,8 @@ app.MapControllers();
 
 using (var scope = app.Services.CreateScope())
 {
-	var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-	await DbSeeder.SeedAsync(context);
+	var seeder = scope.ServiceProvider.GetRequiredService<IDatabaseSeeder>();
+	await seeder.SeedAsync();
 }
 
 app.Run();
