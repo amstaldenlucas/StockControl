@@ -6,11 +6,8 @@ namespace ControlStockApi.Controllers
 {
 	public class ProductController : BaseController<ProductDto>
 	{
-		private readonly IProductService _productService;
-
-		public ProductController(IProductService productService) : base(productService)
+		public ProductController(IProductService service) : base(service)
 		{
-			_productService = productService;
 		}
 
 		public override async Task<ActionResult<IEnumerable<ProductDto>>> GetAll()

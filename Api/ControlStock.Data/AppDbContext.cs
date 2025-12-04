@@ -9,7 +9,6 @@ namespace ControlStock.Data
 
 		public DbSet<Product> Products => Set<Product>();
 		public DbSet<ProductGroup> ProductGroups => Set<ProductGroup>();
-		public DbSet<Car> Cars => Set<Car>();
 		public DbSet<ErrorLog> ErrorLogs => Set<ErrorLog>();
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)

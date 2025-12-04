@@ -1,6 +1,7 @@
 ﻿using ControlStock.Application.Interfaces;
 using ControlStock.Application.Mapping;
 using ControlStock.Application.Services;
+using ControlStock.Core.Interfaces;
 using ControlStock.Core.Interfaces.Repositories;
 using ControlStock.Data;
 using ControlStock.Data.Repositories;
@@ -32,6 +33,7 @@ namespace ControlStock.Infra.IoC
 
 			services.AddScoped<IErrorLogService, ErrorLogService>();
 			services.AddScoped<IProductService, ProductService>();
+			services.AddScoped<IProductGroupService, ProductGroupService>();
 
 			return services;
 		}
@@ -42,6 +44,7 @@ namespace ControlStock.Infra.IoC
 
 			services.AddScoped<IErrorLogRepository, ErrorLogRepository>();
 			services.AddScoped<IProductRepository, ProductRepository>();
+			services.AddScoped<IProductGroupRepository, ProductGroupRepository>();
 
 			return services;
 		}

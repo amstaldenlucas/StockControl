@@ -1,11 +1,12 @@
 ﻿using ControlStock.Application.DTOs;
+using ControlStock.Application.Interfaces;
 using ControlStock.Core.Interfaces;
 
 namespace ControlStockApi.Controllers
 {
 	public class ProductGroupController : BaseController<ProductGroupDto>
 	{
-		public ProductGroupController(ICrudService<ProductGroupDto> service) : base(service)
+		public ProductGroupController(IProductGroupService service) : base(service)
 		{
 		}
 	}
