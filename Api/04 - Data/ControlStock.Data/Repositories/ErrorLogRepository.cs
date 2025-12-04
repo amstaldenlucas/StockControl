@@ -1,4 +1,5 @@
-﻿using ControlStock.Core.Entities;
+﻿
+using ControlStock.Core.Entities;
 using ControlStock.Core.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
 

@@ -11,9 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ControlStock.Application\ControlStock.Application.csproj" />
-    <ProjectReference Include="..\ControlStock.Core\ControlStock.Core.csproj" />
-    <ProjectReference Include="..\ControlStock.Data\ControlStock.Data.csproj" />
+    <ProjectReference Include="..\..\02 - Application\ControlStock.Application\ControlStock.Application.csproj" />
+    <ProjectReference Include="..\..\04 - Data\ControlStock.Data\ControlStock.Data.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,11 +1,7 @@
-using ControlStock.Application.Mapping;
 using ControlStock.Core.Interfaces;
-using ControlStock.Data;
-using ControlStock.Data.Seed;
-using ControlStock.Infra.IoC;
 using ControlStockApi.Configuration;
 using ControlStockApi.Middlewares;
-using Microsoft.EntityFrameworkCore;
+using ControlStock.Infra.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
 

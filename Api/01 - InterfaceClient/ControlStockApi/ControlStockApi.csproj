@@ -18,8 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ControlStock.Application\ControlStock.Application.csproj" />
-    <ProjectReference Include="..\ControlStock.Infra.IoC\ControlStock.Infra.IoC.csproj" />
+    <ProjectReference Include="..\..\02 - Application\ControlStock.Application\ControlStock.Application.csproj" />
+    <ProjectReference Include="..\..\05 - CrossCutting\ControlStock.Infra.IoC\ControlStock.Infra.IoC.csproj" />
   </ItemGroup>
 
 </Project>

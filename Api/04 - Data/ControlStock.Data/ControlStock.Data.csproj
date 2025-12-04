@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ControlStock.Core\ControlStock.Core.csproj" />
+    <ProjectReference Include="..\..\03 - Core\ControlStock.Core\ControlStock.Core.csproj" />
   </ItemGroup>
 
 </Project>
