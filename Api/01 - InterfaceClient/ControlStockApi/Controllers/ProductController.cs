@@ -9,10 +9,5 @@ namespace ControlStockApi.Controllers
 		public ProductController(IProductService service) : base(service)
 		{
 		}
-
-		public override async Task<ActionResult<IEnumerable<ProductDto>>> GetAll()
-		{
-			return await base.GetAll();
-		}
 	}
 }

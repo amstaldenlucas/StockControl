@@ -35,7 +35,8 @@ namespace ControlStock.Infra.IoC
 			services.AddScoped<IDatabaseSeeder, DatabaseSeeder>();
 			services.AddScoped<IErrorLogService, ErrorLogService>();
 			services.AddScoped<IAdminService, AdminService>();
-			
+			services.AddScoped<ITokenService, TokenService>();
+
 			services.AddScoped<IProductService, ProductService>();
 			services.AddScoped<IProductGroupService, ProductGroupService>();
 

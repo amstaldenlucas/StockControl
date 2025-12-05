@@ -1,9 +1,11 @@
 ﻿using ControlStock.Core.Interfaces;
 using ControlStockApi.Exceptions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ControlStockApi.Controllers
 {
+	[Authorize]
 	[ApiController]
 	[Route("api/[controller]")]
 	[ProducesResponseType(StatusCodes.Status200OK)]
@@ -17,10 +19,11 @@ namespace ControlStockApi.Controllers
 			_service = service;
 		}
 
-		[HttpPost]
-		public virtual async Task<ActionResult<TDto>> Create([FromBody] TDto dto)
+		[HttpGet("GetAll")]
+
+		public virtual async Task<ActionResult<IEnumerable<TDto>>> GetAll()
 		{
-			var result = await _service.CreateAsync(dto);
+			var result = await _service.GetAllAsync();
 			return Ok(result);
 		}
 
@@ -34,11 +37,10 @@ namespace ControlStockApi.Controllers
 			return Ok(result);
 		}
 
-		[HttpGet("GetAll")]
-		
-		public virtual async Task<ActionResult<IEnumerable<TDto>>> GetAll()
+		[HttpPost]
+		public virtual async Task<ActionResult<TDto>> Create([FromBody] TDto dto)
 		{
-			var result = await _service.GetAllAsync();
+			var result = await _service.CreateAsync(dto);
 			return Ok(result);
 		}
 

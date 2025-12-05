@@ -7,6 +7,7 @@ namespace ControlStock.Data
 	{
 		public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
+		public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
 		public DbSet<Product> Products => Set<Product>();
 		public DbSet<ProductGroup> ProductGroups => Set<ProductGroup>();
 		public DbSet<ErrorLog> ErrorLogs => Set<ErrorLog>();
@@ -15,6 +16,12 @@ namespace ControlStock.Data
 		{
 			modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
 			base.OnModelCreating(modelBuilder);
+
+			modelBuilder.Entity<RefreshToken>(entity =>
+			{
+				entity.HasIndex(x => x.Token).IsUnique();
+				entity.HasIndex(x => x.ExpirationUtcDate);
+			});
 
 			modelBuilder.Entity<ProductGroup>().HasQueryFilter(x => !x.IsDeleted);
 			modelBuilder.Entity<Product>().HasQueryFilter(x => !x.IsDeleted);
