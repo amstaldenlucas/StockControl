@@ -43,7 +43,10 @@ namespace ControlStock.Application.Services
 
 		public async Task<bool> UpdateAsync(int id, TDto dto)
 		{
-			var entity = _mapper.Map<TEntity>(dto);
+			var entity = await _repository.GetByIdAsync(id);
+			if (entity == null) return false;
+
+			_mapper.Map(dto, entity);
 
 			await _repository.UpdateAsync(entity);
 			await _context.SaveChangesAsync();

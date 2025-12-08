@@ -32,6 +32,9 @@ namespace ControlStock.Data.Repositories
 		public Task UpdateAsync(TEntity entity)
 		{
 			_dbSet.Update(entity);
+			_context.Entry(entity).Property(e => e.CreatedAt).IsModified = false;
+			_context.Entry(entity).Property(e => e.IsDeleted).IsModified = false;
+
 			return Task.CompletedTask;
 		}
 

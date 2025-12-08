@@ -20,9 +20,9 @@ namespace ControlStockApi.Controllers
 		}
 
 		[HttpGet("GetAll")]
-
 		public virtual async Task<ActionResult<IEnumerable<TDto>>> GetAll()
 		{
+			await Task.Delay(2000);
 			var result = await _service.GetAllAsync();
 			return Ok(result);
 		}
@@ -48,7 +48,8 @@ namespace ControlStockApi.Controllers
 		public virtual async Task<ActionResult<TDto>> Update(int id, [FromBody] TDto dto)
 		{
 			var result = await _service.UpdateAsync(id, dto);
-			return Ok(dto);
+			var newDto = await _service.GetByIdAsync(id);
+			return Ok(newDto);
 		}
 
 		[HttpDelete("{id}")]
