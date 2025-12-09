@@ -28,7 +28,6 @@ export default function ProductList() {
       </div>
     );
   } else {
-    console.log('items: ', JSON.stringify(products))
     const tableItems = products!.map((item) => ({
       name: item.name,
       price: item.price,

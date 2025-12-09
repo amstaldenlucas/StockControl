@@ -6,7 +6,7 @@ import { productCreateSchema } from "./productCreateSchema";
 import { createProduct } from "@/services/apiServices/productService";
 import { z } from "zod";
 import { useState } from "react";
-// import { toast } from "sonner";
+import { toastService } from "@/services/toastService";
 import { useRouter } from "next/navigation";
 
 type FormData = z.infer<typeof productCreateSchema>;
@@ -32,7 +32,7 @@ export default function CreateProductForm() {
     try {
       await createProduct(data);
 
-      // toast.success("Produto cadastrado com sucesso!");
+      toastService.success("Produto cadastrado com sucesso!");
 
       // Aguarda 1 segundo para o usuário ver o toast
       setTimeout(() => {
@@ -43,7 +43,7 @@ export default function CreateProductForm() {
       reset();
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "Erro ao salvar o produto";
-      // toast.error(msg);
+      toastService.error(msg);
       setServerError(msg);
     }
   };

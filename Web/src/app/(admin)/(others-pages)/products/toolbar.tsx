@@ -1,5 +1,17 @@
+'use client'
+
 import Link from "next/link";
+import { toastService } from "@/services/toastService";
 import Clock from "@/components/Clock";
+import Button from "@/components/ui/button/Button";
+
+function handleSuccess() {
+  toastService.success("Salvo com sucesso!", "O registro foi atualizado corretamente.")
+}
+
+function handleError() {
+  toastService.error("Erro ao salvar", "Ocorreu um erro no servidor.");
+}
 
 export default function Toolbar() {
   return (
@@ -10,6 +22,10 @@ export default function Toolbar() {
       >
         Novo Produto
       </Link>
+
+       <Button onClick={handleSuccess}>Toast success</Button>
+       <Button onClick={handleError}>Toast error</Button>
+
       <Clock />
     </div>
   );
