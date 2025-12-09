@@ -2,8 +2,6 @@ import Link from "next/link";
 import Clock from "@/components/Clock";
 
 export default function Toolbar() {
-  console.log("render toolbar");
-  
   return (
     <div className="pb-5 flex flex-row justify-between w-full">
       <Link
