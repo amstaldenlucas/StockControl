@@ -22,7 +22,7 @@ namespace ControlStockApi.Controllers
 		[HttpGet("GetAll")]
 		public virtual async Task<ActionResult<IEnumerable<TDto>>> GetAll()
 		{
-			await Task.Delay(2000);
+			await Task.Delay(1000);
 			var result = await _service.GetAllAsync();
 			return Ok(result);
 		}
