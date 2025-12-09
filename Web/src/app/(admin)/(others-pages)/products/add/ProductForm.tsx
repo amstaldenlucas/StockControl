@@ -31,13 +31,8 @@ export default function CreateProductForm() {
 
     try {
       await createProduct(data);
-
+      router.push("/products");
       toastService.success("Produto cadastrado com sucesso!");
-
-      // Aguarda 1 segundo para o usuário ver o toast
-      setTimeout(() => {
-        router.push("/products");
-      }, 1000);
 
       setSuccess(true);
       reset();
@@ -55,31 +50,8 @@ export default function CreateProductForm() {
     >
       <h2 className="text-xl font-semibold">Cadastrar Produto</h2>
 
-      {/* Nome */}
-      <div>
-        <label className="block mb-1">Nome</label>
-        <input
-          type="text"
-          {...register("name")}
-          className="w-full rounded border p-2 dark:bg-neutral-900 dark:border-gray-700"
-        />
-        {errors.name && (
-          <p className="text-red-500 text-sm">{errors.name.message}</p>
-        )}
-      </div>
-
-      {/* Valor */}
-      <div>
-        <label className="block mb-1">Valor</label>
-        <input
-          type="text"
-          {...register("price")}
-          className="w-full rounded border p-2 dark:bg-neutral-900 dark:border-gray-700"
-        />
-        {errors.price && (
-          <p className="text-red-500 text-sm">{errors.price.message}</p>
-        )}
-      </div>
+      {createInput("Nome", "name")}
+      {createInput("Valor", "price")}
 
       {serverError && <p className="text-red-600 text-sm mt-2">{serverError}</p>}
       {success && <p className="text-green-600 text-sm mt-2">Produto cadastrado!</p>}
@@ -93,4 +65,20 @@ export default function CreateProductForm() {
       </button>
     </form>
   );
+
+  function createInput(labelName: string, propName: keyof FormData) {
+    return (
+      <div>
+        <label className="block mb-1">{labelName}</label>
+        <input
+          type="text"
+          {...register(propName)}
+          className="w-full rounded border p-2 dark:bg-neutral-900 dark:border-gray-700" />
+        {errors[propName] && (
+          <p className="text-red-500 text-sm">{errors[propName]?.message?.toString()}</p>
+        )}
+      </div>
+    );
+  }
 }
+
