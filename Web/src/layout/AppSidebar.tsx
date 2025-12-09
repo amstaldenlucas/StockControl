@@ -38,7 +38,7 @@ const navItems: NavItem[] = [
     path: "/calendar",
   },
   {
-    icon: <CalenderIcon />,
+    icon: <GridIcon />,
     name: "Produtos",
     path: "/products",
   },

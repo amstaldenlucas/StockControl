@@ -1,4 +1,4 @@
-import { Product } from "@/models/product";
+import { Product, ProductCreate } from "@/models/product";
 import { baseService } from "./baseService";
 
 export function getProducts() {
@@ -9,9 +9,11 @@ export function getProducts() {
 //   return baseService<Produto>(`/Product/GetById/${id}`, "GET");
 // }
 
-// export function criarProduto(produto: Produto) {
-//   return baseService<Produto, Produto>("/Product/Create", "POST", produto);
-// }
+export function createProduct(produto: ProductCreate) {
+  const newObj = {...produto, price: Number(produto.price)};
+  console.log('Objeto para criar: ', JSON.stringify(newObj));
+  return baseService<Product, unknown>("/Product", "POST", newObj);
+}
 
 // export function atualizarProduto(id: number, produto: Produto) {
 //   return baseService<Produto, Produto>(`/Product/Update/${id}`, "PUT", produto);

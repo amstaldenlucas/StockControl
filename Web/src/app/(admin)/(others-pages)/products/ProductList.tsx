@@ -8,6 +8,7 @@ import { getProducts } from "@/services/apiServices/productService";
 import { Product } from "@/models/product";
 
 export default function ProductList() {
+  console.log('render plist')
   const { data: products, error, isLoading } = useSWR<Product[]>(
     "list_products",
     getProducts

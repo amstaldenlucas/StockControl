@@ -1,10 +1,18 @@
-export default function ClienteToolbar() {
-  return (
-    <div className="pb-5">
+import Link from "next/link";
+import Clock from "@/components/Clock";
 
-      <button className="bg-blue-600 text-white px-4 py-2 rounded">
+export default function Toolbar() {
+  console.log("render toolbar");
+  
+  return (
+    <div className="pb-5 flex flex-row justify-between w-full">
+      <Link
+        href="/products/add"
+        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+      >
         Novo Produto
-      </button>
+      </Link>
+      <Clock />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import ProductList from "./ProductList";
 import { Metadata } from "next";
-import ClienteToolbar from "./toolbar";
+import Toolbar from "./toolbar";
 import PageBreadcrumb from "@/components/common/PageBreadCrumb";
 
 export const metadata: Metadata = {
@@ -14,7 +14,7 @@ export default function page() {
   return (
     <div>
       <PageBreadcrumb pageTitle="Produtos" />
-        <ClienteToolbar/>
+        <Toolbar/>
         <ProductList />
     </div>
   );
