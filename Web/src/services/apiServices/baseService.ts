@@ -29,5 +29,6 @@ export async function baseService<TResponse, TBody = unknown>(
     throw new Error(text || `Erro HTTP ${resp.status}`);
   }
 
-  return resp.json();
+  const dataResult = resp.json();
+  return dataResult;
 }

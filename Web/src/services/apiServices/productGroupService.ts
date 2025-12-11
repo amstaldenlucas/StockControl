@@ -17,6 +17,6 @@ export function updateProductGroup(id: unknown, data: ProductGroupForm) {
   return baseService<ProductGroup, unknown>(`/ProductGroup/${id}`, "PUT", data);
 }
 
-// export function excluirProduto(id: number) {
-//   return baseService<void>(`/ProductGroup/Delete/${id}`, "DELETE");
-// }
+export function deleteProductGroups(id: number) {
+  return baseService<void>(`/ProductGroup/${id}`, "DELETE");
+}

@@ -8,7 +8,7 @@ export default function Toolbar() {
         href="/products/add"
         className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
       >
-        Novo Produto
+        Novo Grupo
       </Link>
     </div>
   );
