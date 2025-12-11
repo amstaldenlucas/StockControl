@@ -10,7 +10,14 @@ namespace ControlStock.Data.Repositories
 		{
 		}
 
-		public async Task<bool> NomeJaExisteAsync(string nome)
+        public async Task<IEnumerable<Product>> GetAllWithGroupAsync()
+        {
+            return await _context.Products
+				.Include(x => x.Group)
+				.ToArrayAsync();
+        }
+
+        public async Task<bool> NomeJaExisteAsync(string nome)
 		{
 			return await _context.Products.AnyAsync(x => x.Name == nome);
 		}

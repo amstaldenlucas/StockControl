@@ -4,6 +4,6 @@ using ControlStock.Core.Interfaces;
 namespace ControlStock.Application.Interfaces
 {
 	public interface IProductGroupService : ICrudService<ProductGroupDto>
-	{
-	}
+    {
+    }
 }

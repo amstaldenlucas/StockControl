@@ -47,6 +47,8 @@ namespace ControlStock.Application.Services
 			if (entity == null) return false;
 
 			_mapper.Map(dto, entity);
+			if (entity.Id <= 0)
+				entity.Id = id;
 
 			await _repository.UpdateAsync(entity);
 			await _context.SaveChangesAsync();

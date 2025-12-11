@@ -1,24 +1,33 @@
-import { Product, ProductCreate } from "@/models/product";
+import { Product, ProductForm } from "@/models/product";
 import { baseService } from "./baseService";
 
 export function getProducts() {
-  return baseService<Product[]>("/Product/GetAll", "GET");
+  return baseService<Product[]>("/Product/GetAllWithGroup", "GET");
 }
 
-// export function obterProdutoPorId(id: number) {
-//   return baseService<Produto>(`/Product/GetById/${id}`, "GET");
-// }
-
-export function createProduct(produto: ProductCreate) {
-  const newObj = {...produto, price: Number(produto.price)};
-  console.log('Objeto para criar: ', JSON.stringify(newObj));
-  return baseService<Product, unknown>("/Product", "POST", newObj);
+export function getProductById(id: number) {
+  return baseService<Product>(`/Product/${id}`, "GET");
 }
 
-// export function atualizarProduto(id: number, produto: Produto) {
-//   return baseService<Produto, Produto>(`/Product/Update/${id}`, "PUT", produto);
-// }
+export function createProduct(data: ProductForm) {
+  const newData = {
+    ...data,
+    price: Number(data.price),
+    productGroupId: Number(data.productGroupId)
+  };
 
-// export function excluirProduto(id: number) {
-//   return baseService<void>(`/Product/Delete/${id}`, "DELETE");
-// }
+  return baseService<Product, unknown>("/Product", "POST", newData);
+}
+
+export function updateProduct(id: unknown, data: ProductForm) {
+  const newData = {
+    ...data,
+    price: Number(data.price),
+    productGroupId: Number(data.productGroupId)
+  };
+  return baseService<Product, unknown>(`/Product/${id}`, "PUT", newData);
+}
+
+export function deleteProduct(id: number) {
+  return baseService<void>(`/Product/${id}`, "DELETE");
+}

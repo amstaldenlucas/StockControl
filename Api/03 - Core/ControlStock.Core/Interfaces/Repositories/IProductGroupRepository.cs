@@ -1,9 +1,8 @@
 ﻿using ControlStock.Core.Entities;
-using ControlStock.Core.Interfaces.Repositories;
 
-namespace ControlStock.Core.Interfaces
+namespace ControlStock.Core.Interfaces.Repositories
 {
 	public interface IProductGroupRepository : IRepositoryBase<ProductGroup>
-	{
-	}
+    {
+    }
 }

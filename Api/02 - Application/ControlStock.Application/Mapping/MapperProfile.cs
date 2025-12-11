@@ -9,7 +9,13 @@ namespace ControlStock.Application.Mapping
 		public MapperProfile()
 		{
 			CreateMap<ErrorLog, ErrorLogDto>().ReverseMap();
-			CreateMap<Product, ProductDto>().ReverseMap();
+			CreateMap<Product, ProductDto>()
+				.ForMember(dest => dest.GroupName,
+					opt => opt.MapFrom(src => src.Group.Name))
+			.ReverseMap()
+			.ForMember(dest => dest.Group, opt => opt.Ignore());
+
+
 			CreateMap<ProductGroup, ProductGroupDto>().ReverseMap();
 		}
 	}

@@ -4,6 +4,7 @@ using ControlStock.Core.Interfaces;
 namespace ControlStock.Application.Interfaces
 {
 	public interface IProductService : ICrudService<ProductDto>
-	{
-	}
+    {
+        Task<IEnumerable<ProductDto>> GetAllWithGroupAsync();
+    }
 }

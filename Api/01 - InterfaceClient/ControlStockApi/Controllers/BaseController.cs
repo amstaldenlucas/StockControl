@@ -30,6 +30,7 @@ namespace ControlStockApi.Controllers
 		[HttpGet("{id}")]
 		public virtual async Task<ActionResult<TDto>> GetById(int id)
 		{
+			await Task.Delay(1000);
 			var result = await _service.GetByIdAsync(id);
 			if (result == null)
 				return NotFound();
@@ -56,7 +57,7 @@ namespace ControlStockApi.Controllers
 		public virtual async Task<ActionResult<bool>> Delete(int id)
 		{
 			await _service.DeleteAsync(id);
-			return NoContent();
+			return Ok();
 		}
 	}
 }

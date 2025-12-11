@@ -1,5 +1,5 @@
 ﻿using ControlStock.Core.Entities;
-using ControlStock.Core.Interfaces;
+using ControlStock.Core.Interfaces.Repositories;
 
 namespace ControlStock.Data.Repositories
 {

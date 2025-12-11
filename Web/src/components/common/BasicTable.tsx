@@ -9,12 +9,14 @@ import {
 
 interface BasicTableProps<T> {
   headers: string[]
-  items: T[]
+  items: T[],
+  tableControls?: (item: T) => React.ReactNode
 }
 
 export default function BasicTable<T extends object>({
   headers,
   items,
+  tableControls
 }: BasicTableProps<T>) {
   const headerCells = headers.map((item, i) => (
     <TableCell
@@ -27,15 +29,30 @@ export default function BasicTable<T extends object>({
   ))
 
   function loadTableCell(item: T) {
-    return Object.values(item).map((value, i) => (
-      <TableCell
-        key={i}
-        className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400"
-      >
-        {String(value)}
-      </TableCell>
-    ))
-  }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { id, ...itemWithoutId } = item as T;
+  return (
+    <>
+      {
+      Object.values(itemWithoutId)
+      .map((value, i) => (
+        <TableCell
+          key={i}
+          className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400"
+        >
+          {String(value)}
+        </TableCell>
+      ))}
+
+      {tableControls && (
+        <TableCell>
+          {tableControls(item)}
+        </TableCell>
+      )}
+    </>
+  );
+}
+
 
   const tableRows = items.map((item, i) => (
     <TableRow key={i}>{loadTableCell(item)}</TableRow>
