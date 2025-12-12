@@ -66,9 +66,13 @@ namespace ControlStockApi.Middlewares
 
 			var response = new ResponseException(context.Response.StatusCode, ex.Message);
 
-			return context.Response.WriteAsync(
-				JsonSerializer.Serialize(response)
-			);
+			var json = JsonSerializer.Serialize(response, new JsonSerializerOptions
+			{
+				PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+				DictionaryKeyPolicy = JsonNamingPolicy.CamelCase
+			});
+
+			return context.Response.WriteAsync(json);
 		}
 	}
 }

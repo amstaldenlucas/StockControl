@@ -21,5 +21,10 @@ namespace ControlStock.Data.Repositories
 		{
 			return await _context.Products.AnyAsync(x => x.Name == nome);
 		}
-	}
+
+        protected override Task<CheckDeleteItem> CanDeleteItemAsync(int id)
+        {
+            return Task.FromResult(new CheckDeleteItem(true, string.Empty));
+        }
+    }
 }

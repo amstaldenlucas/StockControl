@@ -1,15 +1,10 @@
 ﻿using ControlStock.Core.Entities;
 using ControlStock.Core.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ControlStock.Data.Repositories
 {
-	public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : EntityBase
+	public abstract class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : EntityBase
 	{
 		private protected AppDbContext _context;
 		private protected DbSet<TEntity> _dbSet;
@@ -38,9 +33,17 @@ namespace ControlStock.Data.Repositories
 			return Task.CompletedTask;
 		}
 
-		public async Task DeleteAsync(int id)
+		public virtual async Task DeleteAsync(int id)
 		{
 			var entity = await GetByIdAsync(id);
+
+			if (entity is null)
+            	return;
+
+			var checkDeleteItem = await CanDeleteItemAsync(id);
+			if (!checkDeleteItem.IsValid)
+				throw new InvalidOperationException($"Este item não pode ser excluído. {checkDeleteItem.ErrorMessage}".Trim());
+
 			if (entity is EntityBase baseEntity)
 			{
 				baseEntity.IsDeleted = true;
@@ -48,5 +51,7 @@ namespace ControlStock.Data.Repositories
 				_dbSet.Update(entity);
 			}
 		}
+
+		protected abstract Task<CheckDeleteItem> CanDeleteItemAsync(int id);
 	}
 }

@@ -1,6 +1,5 @@
 ﻿using ControlStock.Application.DTOs;
 using ControlStock.Application.Interfaces;
-using ControlStock.Core.Interfaces;
 
 namespace ControlStockApi.Controllers
 {

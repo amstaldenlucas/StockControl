@@ -25,7 +25,7 @@ export function useConfirmModal() {
   }
 
   async function handleConfirm() {
-    if (options.onConfirm)await options.onConfirm();
+    if (options.onConfirm) await options.onConfirm();
     close();
   }
 

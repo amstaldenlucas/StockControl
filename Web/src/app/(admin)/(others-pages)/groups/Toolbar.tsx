@@ -5,7 +5,7 @@ export default function Toolbar() {
     
     <div className="pb-5 flex flex-row justify-between w-full">
       <Link
-        href="/products/add"
+        href="/groups/add"
         className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
       >
         Novo Grupo

@@ -24,11 +24,20 @@ export async function baseService<TResponse, TBody = unknown>(
     body: body ? JSON.stringify(body) : undefined,
   });
 
-  if (!resp.ok) {
-    const text = await resp.text();
-    throw new Error(text || `Erro HTTP ${resp.status}`);
+  const text = await resp.text();
+
+  // Tenta converter resposta sempre
+  let data: unknown = null;
+  try {
+    data = text ? JSON.parse(text) : null;
+  } catch {
+    data = text;
   }
 
-  const dataResult = resp.json();
-  return dataResult;
+  // Se deu erro HTTP, retorne a estrutura de erro da API
+  if (!resp.ok) {
+    throw data; // 👈 retorna { status, error }
+  }
+
+  return data as TResponse;
 }

@@ -45,7 +45,7 @@ namespace ControlStock.Infra.IoC
 
 		private static IServiceCollection AddDbServices(this IServiceCollection services)
 		{
-			services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
+			// services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
 
 			services.AddScoped<IErrorLogRepository, ErrorLogRepository>();
 			services.AddScoped<IProductRepository, ProductRepository>();

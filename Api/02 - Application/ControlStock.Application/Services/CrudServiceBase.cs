@@ -56,7 +56,7 @@ namespace ControlStock.Application.Services
 			return true;
 		}
 
-		public async Task<bool> DeleteAsync(int id)
+		public virtual async Task<bool> DeleteAsync(int id)
 		{
 			await _repository.DeleteAsync(id);
 			await _context.SaveChangesAsync();

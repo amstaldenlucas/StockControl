@@ -9,8 +9,9 @@ namespace ControlStock.Application.Services
 {
 	public class ProductGroupService : CrudServiceBase<ProductGroup, ProductGroupDto>, IProductGroupService
 	{
-		public ProductGroupService(IRepositoryBase<ProductGroup> repository, AppDbContext context, IMapper mapper) : base(repository, context, mapper)
-		{
-		}
-	}
+        public ProductGroupService(IProductGroupRepository repository, AppDbContext context, IMapper mapper)
+			: base(repository, context, mapper)
+        {
+        }
+    }
 }

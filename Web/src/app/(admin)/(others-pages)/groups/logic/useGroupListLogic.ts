@@ -23,27 +23,35 @@ interface ProductListLogic {
     };
 }
 
+const swrListName = "list_groups";
+
 export function useGroupListLogic(): ProductListLogic {
     const { data: groups, error, isLoading } = useSWR<ProductGroup[]>(
-        "list_groups",
+        swrListName,
         getProductGroups
     );
-
-
 
     const { isOpen, openModal, closeModal } = useModal();
     const [selectedId, setSelectedId] = useState<number | null>(null);
 
     const { confirmModal, ConfirmModal } = useConfirmModal();
 
+
+    
     function handleDelete(id: number, itemDesc: string) {
         confirmModal({
             title: `Excluir grupo ${itemDesc}?`,
             message: "Essa ação é irreversível.",
-            onConfirm: async () => {
-                await deleteProductGroups(id);
-                toastService.success(`Produto ${itemDesc} excluído com sucesso`)
-                mutate("list_products"); // atualiza lista
+            onConfirm: () => {
+                deleteProductGroups(id)
+                    ?.then(() => {
+                        mutate(swrListName);
+                        toastService.success(`Produto ${itemDesc} excluído com sucesso`)
+                    })
+                    .catch(error  => {
+                        console.error('api error:  ',  error)
+                        toastService.error(`Excluir ${itemDesc}`, error.error)
+                    })
             },
         });
     }

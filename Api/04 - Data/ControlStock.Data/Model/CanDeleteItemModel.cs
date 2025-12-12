@@ -1,0 +1,1 @@
+public record CheckDeleteItem(bool IsValid, string ErrorMessage);
