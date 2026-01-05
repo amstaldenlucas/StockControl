@@ -8,19 +8,19 @@ import {
 import Label from "@/components/form/Label";
 import { ChevronDownIcon } from "@/icons";
 
-interface FormInputProps<TForm extends FieldValues> {
+interface FormInputProps<TInput extends FieldValues, TOutput extends FieldValues = TInput> {
     label: string;
-    name: Path<TForm>;
-    form: UseFormReturn<TForm>;
+    name: Path<TInput>;
+    form: UseFormReturn<TInput, unknown, TOutput>;
     options: {id: number | string, value: string}[];
 }
 
-export function FormSelect<TForm extends FieldValues>({
+export function FormSelect<TInput extends FieldValues, TOutput extends FieldValues = TInput>({
     form,
   label,
   name,
   options
-}: FormInputProps<TForm>) {
+}: FormInputProps<TInput, TOutput>) {
   const {
     register,
     formState: { errors },

@@ -3,13 +3,13 @@ export interface Product {
   name: string
   groupName?: string | undefined
   price: number
-  productGroupId: string
+  productGroupId: number
   createdAt: Date
 }
 
 export interface ProductForm {
   name: string
   description?: string | undefined
-  price: string
-  productGroupId: string
+  price: number
+  productGroupId: number
 }

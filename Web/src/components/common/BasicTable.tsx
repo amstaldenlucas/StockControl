@@ -28,13 +28,21 @@ export default function BasicTable<T extends object>({
     </TableCell>
   ))
 
-  function loadTableCell(item: T) {
+  function removeId<T extends { id: string | number }>(item: T): Omit<T, "id"> {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { id, ...itemWithoutId } = item as T;
+    const { id, ...rest } = item;
+    return rest;
+  }
+
+  function loadTableCell(item: T) {
+    // @ts-expect-error – item sempre possui id neste contexto
+    const itemsToTable = removeId(item);
+
+    // const { id, ...itemWithoutId } = item as T;
   return (
     <>
       {
-      Object.values(itemWithoutId)
+      Object.values(itemsToTable)
       .map((value, i) => (
         <TableCell
           key={i}

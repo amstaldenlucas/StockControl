@@ -10,22 +10,22 @@ export function getProductById(id: number) {
 }
 
 export function createProduct(data: ProductForm) {
-  const newData = {
-    ...data,
-    price: Number(data.price),
-    productGroupId: Number(data.productGroupId)
-  };
+  // const newData = {
+  //   ...data,
+  //   price: Number(data.price),
+  //   productGroupId: Number(data.productGroupId)
+  // };
 
-  return baseService<Product, unknown>("/Product", "POST", newData);
+  return baseService<Product, unknown>("/Product", "POST", data);
 }
 
 export function updateProduct(id: unknown, data: ProductForm) {
-  const newData = {
-    ...data,
-    price: Number(data.price),
-    productGroupId: Number(data.productGroupId)
-  };
-  return baseService<Product, unknown>(`/Product/${id}`, "PUT", newData);
+  // const newData = {
+  //   ...data,
+  //   price: Number(data.price),
+  //   productGroupId: Number(data.productGroupId)
+  // };
+  return baseService<Product, unknown>(`/Product/${id}`, "PUT", data);
 }
 
 export function deleteProduct(id: number) {
