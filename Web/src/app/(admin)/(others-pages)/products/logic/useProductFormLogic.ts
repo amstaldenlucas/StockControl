@@ -55,8 +55,7 @@ export function useProductFormLogic({
     getProductGroups
   );
 
-  const groups =
-    groupsData?.map((g) => ({ id: g.id, value: g.name })) ?? [];
+  const groups = groupsData?.map((g) => ({ id: g.id, value: g.name })) ?? [];
 
   const {
     data: product,

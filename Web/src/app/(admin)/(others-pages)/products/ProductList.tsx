@@ -3,7 +3,7 @@
 import ComponentCard from "@/components/common/ComponentCard";
 import BasicTable from "@/components/common/BasicTable";
 import SkeletonList from "@/components/loading/SkeletonList";
-import { formatDateWithLocale } from "@/utils/dateFormatter"
+import { formatDateWithLocale } from "@/utils/formatters/dateFormatter"
 import { PencilIcon, TrashBinIcon } from "@/icons";
 import Button from "@/components/ui/button/Button";
 import { Modal } from "@/components/ui/modal";

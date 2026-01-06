@@ -6,7 +6,7 @@ import ComponentCard from "@/components/common/ComponentCard";
 import BasicTable from "@/components/common/BasicTable";
 import Button from "@/components/ui/button/Button";
 import { PencilIcon, TrashBinIcon } from "@/icons";
-import { formatDateWithLocale } from "@/utils/dateFormatter";
+import { formatDateWithLocale } from "@/utils/formatters/dateFormatter";
 import { Modal } from "@/components/ui/modal";
 
 export default function GroupList() {
