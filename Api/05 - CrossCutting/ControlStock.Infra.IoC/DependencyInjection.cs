@@ -6,6 +6,8 @@ using ControlStock.Core.Interfaces.Repositories;
 using ControlStock.Data;
 using ControlStock.Data.Repositories;
 using ControlStock.Data.Seed;
+using Mapster;
+using MapsterMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,7 +31,7 @@ namespace ControlStock.Infra.IoC
 
 		public static IServiceCollection AddServices(this IServiceCollection services, IConfiguration configuration)
 		{
-			services.AddAutoMapper(typeof(MapperProfile).Assembly);
+			
 			AddDbServices(services);
 
 			services.AddScoped<IDatabaseSeeder, DatabaseSeeder>();
@@ -39,6 +41,19 @@ namespace ControlStock.Infra.IoC
 
 			services.AddScoped<IProductService, ProductService>();
 			services.AddScoped<IProductGroupService, ProductGroupService>();
+
+			return services;
+		}
+
+		public static IServiceCollection ConfigureMapper(this IServiceCollection services)
+		{
+			//services.AddAutoMapper(typeof(MapperProfile).Assembly);
+
+			var config = TypeAdapterConfig.GlobalSettings;
+			config.Scan(typeof(MappingRegister).Assembly);
+
+			services.AddSingleton(config);
+			services.AddScoped<IMapper, ServiceMapper>();
 
 			return services;
 		}

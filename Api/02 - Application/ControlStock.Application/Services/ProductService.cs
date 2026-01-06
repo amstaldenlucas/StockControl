@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿using MapsterMapper;
 using ControlStock.Application.DTOs;
 using ControlStock.Application.Interfaces;
 using ControlStock.Core.Entities;

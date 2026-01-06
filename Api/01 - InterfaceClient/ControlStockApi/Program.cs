@@ -25,6 +25,7 @@ var configuration = builder.Configuration;
 builder.Services.AddInfrastructure(configuration, builder.Environment.ContentRootPath);
 builder.Services.ConfigureAuthentication(configuration);
 builder.Services.AddServices(configuration);
+builder.Services.ConfigureMapper();
 
 var app = builder.Build();
 DbConfiguration.ApplyMigrations(app);
