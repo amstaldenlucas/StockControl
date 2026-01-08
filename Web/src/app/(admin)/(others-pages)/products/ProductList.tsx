@@ -9,73 +9,63 @@ import Button from "@/components/ui/button/Button";
 import { Modal } from "@/components/ui/modal";
 import ProductForm from "./add/ProductForm";
 import { useProductListLogic } from "./logic/useProductListLogic"; // IMPORTANTE: O NOVO HOOK
+import DataState from "@/components/common/DataState";
 
 export default function ProductList() {
     // 1. CHAMA O HOOK PARA OBTER TODA A LÓGICA E DADOS
     const { 
         products, 
-        errorGetProducts, 
-        isLoadingProducts,
-        ConfirmModal,
+        error, 
+        isLoading,
         handleDelete,
         editModalProps: { isOpen, openModal, closeModal, selectedId, setSelectedId }
     } = useProductListLogic();
 
-    let content;
+    const tableItems = products?.map((item) => ({
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        groupName: item.groupName,
+        createdAtFormatted: formatDateWithLocale(item.createdAt, 'pt-BR')
+    })) ?? [];
 
-    if (isLoadingProducts) {
-        content = <SkeletonList numberLines={5} />;
-    } else if (errorGetProducts) {
-        content = (
-            <div className="text-gray-500 dark:text-gray-400">
-                <div className="text-2xl">Erro ao carregar produtos</div>
-                <div className="text-sm">Erro: {errorGetProducts.message}</div>
-            </div>
-        );
-    } else {
-        const tableItems = products!.map((item) => ({
-            id: item.id,
-            name: item.name,
-            price: item.price,
-            groupName: item.groupName,
-            createdAtFormatted: formatDateWithLocale(item.createdAt, 'pt-BR')
-        }));
-
-        type ProductTableItem = typeof tableItems[number];
-        content = (
-            <BasicTable<ProductTableItem>
-                headers={["Nome", "Valor", "Grupo", "Data criação", "Ações"]}
-                items={tableItems}
-
-                tableControls={(item: ProductTableItem) => (
-                    <div className="flex gap-2">
-                        <Button
-                            className="!p-2 bg-transparent hover:bg-gray-300/30"
-                            onClick={() => {
-                                setSelectedId(item.id); // Lógica de estado de edição
-                                openModal();
-                            }}
-                        >
-                            <PencilIcon />
-                        </Button>
-
-                        <Button size="sm"
-                            className="!p-2 bg-transparent hover:bg-gray-300/30"
-                            onClick={() => handleDelete(item.id, item.name)} // Lógica de deleção
-                        >
-                            <TrashBinIcon className="text-red-500" />
-                        </Button>
-                    </div>
-                )}
-            />
-        );
-    }
+    type ProductTableItem = typeof tableItems[number];
 
     return (
         <>
-            <ComponentCard title="Produtos">{content}</ComponentCard>
+            <ComponentCard title="Produtos">
+                <DataState loading={<SkeletonList numberLines={5} />}
+                    isLoading={isLoading}
+                    error={error}
+                >
+                    <BasicTable<ProductTableItem>
+                        headers={["Nome", "Valor", "Grupo", "Data criação", "Ações"]}
+                        items={tableItems}
 
-            {ConfirmModal} 
+                        tableControls={(item: ProductTableItem) => (
+                            <div className="flex gap-2">
+                                <Button
+                                    className="!p-2 bg-transparent hover:bg-gray-300/30"
+                                    onClick={() => {
+                                        setSelectedId(item.id); // Lógica de estado de edição
+                                        openModal();
+                                    }}
+                                >
+                                    <PencilIcon />
+                                </Button>
+
+                                <Button size="sm"
+                                    className="!p-2 bg-transparent hover:bg-gray-300/30"
+                                    onClick={() => handleDelete(item.id, item.name)} // Lógica de deleção
+                                >
+                                    <TrashBinIcon className="text-red-500" />
+                                </Button>
+                            </div>
+                        )}
+                    />
+                </DataState>
+            </ComponentCard>
+
             <Modal isOpen={isOpen} onClose={closeModal} className="max-w-[700px] p-2 lg:p-6 ">
                 <ProductForm productId={selectedId ?? undefined} onSuccess={closeModal} />
             </Modal>
