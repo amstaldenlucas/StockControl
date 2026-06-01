@@ -28,7 +28,7 @@ builder.Services.AddServices(configuration);
 builder.Services.ConfigureMapper();
 
 var app = builder.Build();
-DbConfiguration.ApplyMigrations(app);
+DbConfiguration.InitializeDatabase(app);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

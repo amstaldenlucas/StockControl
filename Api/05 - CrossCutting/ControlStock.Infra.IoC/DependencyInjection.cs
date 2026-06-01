@@ -22,7 +22,7 @@ namespace ControlStock.Infra.IoC
 			if (!Path.Exists(sqliteFolder))
 				Directory.CreateDirectory(sqliteFolder);
 
-			services.AddDbContext<AppDbContext>(options =>
+			services.AddDbContextPool<AppDbContext>(options =>
 				options.UseSqlite(configuration.GetConnectionString("Sqlite"))
 			);
 

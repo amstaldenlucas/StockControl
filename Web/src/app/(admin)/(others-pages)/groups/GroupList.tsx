@@ -8,6 +8,7 @@ import Button from "@/components/ui/button/Button";
 import { PencilIcon, TrashBinIcon } from "@/icons";
 import { formatDateWithLocale } from "@/utils/formatters/dateFormatter";
 import { Modal } from "@/components/ui/modal";
+import ProductGroupForm from "./add/ProductGroupForm";
 
 export default function GroupList() {
 
@@ -32,12 +33,12 @@ export default function GroupList() {
         );
     else {
 
-        const tableItems = groups!.map((item) => ({
+        const tableItems = groups?.map((item) => ({
             id: item.id,
             name: item.name,
             description: item.description,
             createdAtFormatted: formatDateWithLocale(item.createdAt, 'pt-BR')
-        }));
+        })) ?? [];
         
         type ProductTableItem = typeof tableItems[number];
         content = (
@@ -75,9 +76,9 @@ export default function GroupList() {
 
             {ConfirmModal} 
             <Modal isOpen={isOpen} onClose={closeModal} className="max-w-[700px] p-2 lg:p-6 ">
-                <div>Edit/create modal {selectedId}</div>
-                {/* <ProductForm productId={selectedId ?? undefined} onSuccess={closeModal} /> */}
+                <ProductGroupForm groupId={selectedId ?? undefined} onSuccess={closeModal} />
             </Modal>
+
         </>
     )
 }
