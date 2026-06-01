@@ -25,7 +25,7 @@ interface ProductListLogic {
 
 
 export function useProductListLogic(): ProductListLogic {
-    const { data: products, error, isLoading }
+    const { data: products, error }
         = useSWR<Product[]>("list_products",getProducts);
 
     const { isOpen, openModal, closeModal } = useModal();
@@ -48,7 +48,7 @@ export function useProductListLogic(): ProductListLogic {
     return {
         products,
         error,
-        isLoading,
+        isLoading: !products && !error,
         handleDelete,
         editModalProps: {
             isOpen,
