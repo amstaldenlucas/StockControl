@@ -10,7 +10,7 @@ import {
 } from "@/services/apiServices/productGroupService";
 
 import {
-  CreateProductGroupForm,
+  useCreateProductGroupForm,
   FormInput,
   FormOutput,
 } from "../schema/productGroupSetup";
@@ -18,7 +18,7 @@ import {
 
 // Define o que o hook irá retornar
 interface GroupFormLogic {
-  form: ReturnType<typeof CreateProductGroupForm>;
+  form: ReturnType<typeof useCreateProductGroupForm>;
   isLoadingData: boolean;
   isSubmitting: boolean;
   error: Error | undefined;
@@ -36,7 +36,7 @@ export function useProductFormLogic({
   groupId,
   onSuccess,
 }: UseGroupFormLogicProps): GroupFormLogic {
-  const form = CreateProductGroupForm();
+  const form = useCreateProductGroupForm();
   const {
     reset,
     handleSubmit,

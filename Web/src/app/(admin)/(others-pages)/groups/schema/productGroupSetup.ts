@@ -11,7 +11,7 @@ export const productGroupSchema = z.object({
 export type FormInput = z.input<typeof productGroupSchema>;
 export type FormOutput = z.output<typeof productGroupSchema>;
 
-export function CreateProductGroupForm() {
+export function useCreateProductGroupForm() {
   return useForm<FormInput, unknown, FormOutput>({
     resolver: zodResolver(productGroupSchema),
   });

@@ -14,7 +14,7 @@ import {
   CreateProductForm,
   FormInput,
   FormOutput,
-} from "../add/productFormSetup";
+} from "../schema/productFormSetup";
 
 import { ProductGroup } from "@/models/productGroup";
 
