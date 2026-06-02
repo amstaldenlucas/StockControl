@@ -13,7 +13,7 @@ import {
   CreateProductGroupForm,
   FormInput,
   FormOutput,
-} from "../add/productGroupSetup";
+} from "../schema/productGroupSetup";
 
 
 // Define o que o hook irá retornar

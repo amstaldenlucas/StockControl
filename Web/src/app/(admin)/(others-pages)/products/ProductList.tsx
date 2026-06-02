@@ -8,7 +8,7 @@ import { PencilIcon, TrashBinIcon } from "@/icons";
 import Button from "@/components/ui/button/Button";
 import { Modal } from "@/components/ui/modal";
 import ProductForm from "./add/ProductForm";
-import { useProductListLogic } from "./logic/useProductListLogic"; // IMPORTANTE: O NOVO HOOK
+import { useProductListLogic } from "./hooks/useProductListLogic"; // IMPORTANTE: O NOVO HOOK
 import DataState from "@/components/common/DataState";
 
 export default function ProductList() {

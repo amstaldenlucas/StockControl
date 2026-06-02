@@ -4,7 +4,7 @@ import ComponentCard from '@/components/common/ComponentCard';
 import SkeletonForm from "@/components/loading/SkeletonForm";
 
 import { FormInput } from '@/components/form/FormInput';
-import { useProductFormLogic } from '../logic/useGroupFormLogic'
+import { useProductFormLogic } from '../hooks/useGroupFormLogic'
 interface ProductGroupFormProps {
     groupId?: number;
     onSuccess?: () => void;

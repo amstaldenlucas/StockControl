@@ -1,5 +1,5 @@
 import PageBreadcrumb from "@/components/common/PageBreadCrumb";
-import ProductGroupForm from "./ProductGroupForm";
+import ProductGroupForm from "../components/ProductGroupForm";
 
 export default function page() {
     return (

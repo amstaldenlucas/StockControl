@@ -28,7 +28,7 @@ builder.Services.AddServices(configuration);
 builder.Services.ConfigureMapper();
 
 var app = builder.Build();
-DbConfiguration.InitializeDatabase(app);
+await DbConfiguration.InitializeDatabase(app);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -47,13 +47,6 @@ app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
-
-using (var scope = app.Services.CreateScope())
-{
-	var seeder = scope.ServiceProvider.GetRequiredService<IDatabaseSeeder>();
-	await seeder.SeedAsync();
-}
 
 app.Run();

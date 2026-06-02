@@ -4,11 +4,6 @@ import { jwtDecode } from "jwt-decode";
 const API_URL = process.env.BASE_URL_API!;
 const SECRET = process.env.API_SECRET!;
 
-// type TokenData = {
-//   token: string
-//   expiresAt: number
-// }
-
 const safetMarginToExpirationTokenInSeconds = 10;
 
 async function setCookie(key: string, value: string) {

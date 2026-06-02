@@ -1,6 +1,6 @@
-import GroupList from "./GroupList";
+import GroupList from "./components/GroupList";
 import { Metadata } from "next";
-import Toolbar from "./Toolbar";
+import Toolbar from "./components/Toolbar";
 import PageBreadcrumb from "@/components/common/PageBreadCrumb";
 
 export const metadata: Metadata = {

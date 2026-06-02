@@ -1,14 +1,14 @@
 'use client'
 
 import SkeletonList from "@/components/loading/SkeletonList";
-import { useGroupListLogic } from "./logic/useGroupListLogic";
+import { useGroupListLogic } from "../hooks/useGroupListLogic";
 import ComponentCard from "@/components/common/ComponentCard";
 import BasicTable from "@/components/common/BasicTable";
 import Button from "@/components/ui/button/Button";
 import { PencilIcon, TrashBinIcon } from "@/icons";
 import { formatDateWithLocale } from "@/utils/formatters/dateFormatter";
 import { Modal } from "@/components/ui/modal";
-import ProductGroupForm from "./add/ProductGroupForm";
+import ProductGroupForm from "./ProductGroupForm";
 
 export default function GroupList() {
 

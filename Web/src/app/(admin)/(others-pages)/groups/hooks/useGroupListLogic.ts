@@ -27,7 +27,7 @@ const swrListName = "list_groups";
 
 export function useGroupListLogic(): ProductListLogic {
 
-    const { data: groups, error } = useSWR<ProductGroup[]>(
+    const { data: groups, error, isLoading } = useSWR<ProductGroup[]>(
         swrListName,
         getProductGroups
     );
@@ -60,7 +60,7 @@ export function useGroupListLogic(): ProductListLogic {
     return {
         groups,
         error,
-        isLoading: !groups && !error,
+        isLoading,
         ConfirmModal,
         handleDelete,
         editModalProps: {

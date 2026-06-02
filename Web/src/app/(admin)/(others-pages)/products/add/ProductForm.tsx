@@ -3,7 +3,7 @@
 import ComponentCard from '@/components/common/ComponentCard';
 import SkeletonForm from "@/components/loading/SkeletonForm";
 
-import { useProductFormLogic } from "../logic/useProductFormLogic";
+import { useProductFormLogic } from "../hooks/useProductFormLogic";
 import { FormInput } from '@/components/form/FormInput';
 import { FormSelect } from "@/components/form/FormSelect";
 

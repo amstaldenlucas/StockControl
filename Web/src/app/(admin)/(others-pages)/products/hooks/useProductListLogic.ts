@@ -11,7 +11,7 @@ interface ProductListLogic {
     products: Product[] | undefined;
     error: Error | undefined;
     isLoading: boolean;
-    
+
     handleDelete: (id: number, itemDesc: string) => void;
     
     editModalProps: {
@@ -25,7 +25,7 @@ interface ProductListLogic {
 
 
 export function useProductListLogic(): ProductListLogic {
-    const { data: products, error }
+    const { data: products, error, isLoading }
         = useSWR<Product[]>("list_products",getProducts);
 
     const { isOpen, openModal, closeModal } = useModal();
@@ -48,7 +48,7 @@ export function useProductListLogic(): ProductListLogic {
     return {
         products,
         error,
-        isLoading: !products && !error,
+        isLoading,
         handleDelete,
         editModalProps: {
             isOpen,
