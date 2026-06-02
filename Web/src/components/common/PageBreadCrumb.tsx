@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import BtnVoltar from "./BtnVoltar";
 
 interface BreadcrumbProps {
   pageTitle: string;
@@ -16,6 +17,9 @@ const PageBreadcrumb: React.FC<BreadcrumbProps> = ({ pageTitle }) => {
       </h2>
       <nav>
         <ol className="flex items-center gap-1.5">
+          <li>
+            <BtnVoltar />
+          </li>
           <li>
             <Link
               className="inline-flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400"
